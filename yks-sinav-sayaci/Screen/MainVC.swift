@@ -7,119 +7,81 @@
 
 import UIKit
 
-
-let headerView          = UIView()
-let stackView           = UIStackView()
-let titleLabel          = MyCustomLabel(size: 36,color: .white)
-let timeItemOne         = TimeInfoView()
-let timeItemTwo         = TimeInfoView()
-let timeItemThree       = TimeInfoView()
-let timeItemFour        = TimeInfoView()
-
-let motivationView      = UIView()
-let motivationImage     = UIImageView()
-let motivationTitle     = MyCustomLabel(size: 46,color: .white)
-let motivationLabel     = MyCustomLabel()
-
-var quoteTexts          = [Quote]()
+protocol MainVCDelegate: AnyObject{
+    func getTime(string: String)
+}
 
 class MainVC: UIViewController {
+        
+    let headerContainerView     = UIView()
+    let motivationContainerView = UIView()
 
+    var quoteTexts  = [Quote]()
+    
+    var delegate : MainVCDelegate?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-     
+        
+        configureLayout()
         configureHeaderView()
-        configureStackView()
         configureMotivationView()
         getQuoteTexts()
         configureTimer()
+        delegate?.getTime(string: "timeeeeeee")
     }
     
-    
-    private func configureStackView(){
-        
-        stackView.distribution  = .equalSpacing
-        stackView.axis          = .horizontal
-        stackView.addArrangedSubview(timeItemOne)
-        stackView.addArrangedSubview(timeItemTwo)
-        stackView.addArrangedSubview(timeItemThree)
-        stackView.addArrangedSubview(timeItemFour)
-            
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    func configureLayout(){
+        DispatchQueue.main.async {
+            let timeHeaderVC = UINavigationController(rootViewController: TimeHeaderVC())
+            self.add(childVC: timeHeaderVC, containerView: self.headerContainerView)
+            let motivationVC = MotivationVC()
+            self.add(childVC: motivationVC, containerView: self.motivationContainerView)
+        }
     }
-    
     
     private func configureHeaderView(){
+        view.addSubview(headerContainerView)
+                
+        headerContainerView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(headerView)
-        headerView.addSubview(stackView)
-        headerView.addSubview(titleLabel)
-        
-        titleLabel.text                 = "YKS 2022"
-        
-        headerView.backgroundColor      = UIColor(red: 53.0/255, green: 133.0/255, blue: 139.0/255, alpha: 1)
-        
-        headerView.layer.cornerRadius   = 10
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-             
         NSLayoutConstraint.activate([
-         
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            headerView.heightAnchor.constraint(equalToConstant: 200),
-            
-            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 12),
-            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: 40),
-                                 
-            stackView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 12),
-            stackView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -12),
-            stackView.heightAnchor.constraint(equalToConstant: 90)
+            headerContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            headerContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            headerContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            headerContainerView.heightAnchor.constraint(equalToConstant: 200),
         ])
     }
     
     
     private func configureMotivationView(){
-        view.addSubview(motivationView)
-        motivationView.addSubview(motivationTitle)
-        motivationView.addSubview(motivationImage)
+        view.addSubview(motivationContainerView)
         
-        motivationView.backgroundColor      = UIColor(red: 79.0/255, green: 189.0/255, blue: 186.0/255, alpha: 1.0)
-        motivationView.layer.cornerRadius   = 10
+        motivationContainerView.backgroundColor      = UIColor(red: 79.0/255, green: 189.0/255, blue: 186.0/255, alpha: 1.0)
+        motivationContainerView.layer.cornerRadius   = 10
         
-        motivationView.translatesAutoresizingMaskIntoConstraints    = false
-        motivationImage.translatesAutoresizingMaskIntoConstraints   = false
-        
-        motivationTitle.text          = "Günün Sözü"
-        motivationImage.image         = UIImage(named: "Layer1")
-        motivationImage.contentMode   = .scaleAspectFit
-        
+        motivationContainerView.translatesAutoresizingMaskIntoConstraints    = false
+       
         let height:CGFloat = DeviceTypes.isiPhone8Zoomed || DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Standard ?  300 : 400
         
         NSLayoutConstraint.activate([
-            motivationView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 25),
-            motivationView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            motivationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            motivationView.heightAnchor.constraint(equalToConstant: height),
-            
-            motivationImage.topAnchor.constraint(equalTo: motivationView.topAnchor, constant: 10),
-            motivationImage.leadingAnchor.constraint(equalTo: motivationView.leadingAnchor, constant: 12),
-            motivationImage.heightAnchor.constraint(equalTo: motivationImage.widthAnchor),
-            motivationImage.widthAnchor.constraint(equalToConstant: 90),
-            
-            motivationTitle.centerYAnchor.constraint(equalTo: motivationImage.centerYAnchor),
-            motivationTitle.leadingAnchor.constraint(equalTo: motivationImage.trailingAnchor),
-            motivationTitle.trailingAnchor.constraint(equalTo: motivationView.trailingAnchor, constant: -20),
-            motivationTitle.heightAnchor.constraint(equalToConstant: 50)
+            motivationContainerView.topAnchor.constraint(equalTo: headerContainerView.bottomAnchor, constant: 25),
+            motivationContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            motivationContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            motivationContainerView.heightAnchor.constraint(equalToConstant: height),
         ])
     }
     
-  
+    func add(childVC : UIViewController, containerView: UIView){
+        addChild(childVC)
+        containerView.addSubview(childVC.view)
+        childVC.view.frame = containerView.bounds
+        childVC.didMove(toParent: self)
+    }
+    
+    
     private func configureTimer(){
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(calculateRemainderDate), userInfo: nil, repeats: true)
     }
@@ -155,21 +117,16 @@ class MainVC: UIViewController {
         
         let result = calculateRemainderTime(day: remainderDay!, hour: remainderHour!, minute: remainderMinute!, second: remainderSecond!)
         
-        showRemainderTime(day: result.RemainderDay, hour: result.RemainderHour, minute: result.RemainderMinute, second: result.RemainderSecond)
+        //delegate?.getTime(day: result.RemainderDay, hour: result.RemainderHour, minute: result.RemainderMinute, second: result.RemainderSecond)
     }
     
     
     private func showRemainderTime(day:Int,hour:Int,minute:Int,second:Int) {
-        if day != 0 && hour != 0 && minute != 0 && second != 0 {
-            timeItemOne.set(infoType: .day, number: day)
-            timeItemTwo.set(infoType: .hour, number: hour)
-            timeItemThree.set(infoType: .minute, number: minute)
-            timeItemFour.set(infoType: .second, number: second)
-        }else {
-            // exam time :D
-            
-            
-        }
+       //let TimeHeader = TimeHeaderVC()
+       // TimeHeader.showRemainderTime(day: day, hour: hour, minute: minute, second: second)
+       //delegate?.getTime(day: day, hour: hour, minute: minute, second: second)
+               
+
     }
     
     
@@ -177,7 +134,7 @@ class MainVC: UIViewController {
         GetLocalData.shared.parse { result in
             switch result {
             case .success(let quoteTextsArray):
-                quoteTexts = quoteTextsArray
+                self.quoteTexts = quoteTextsArray
             case .failure(let error):
                 print(error.rawValue)
             }
@@ -185,3 +142,5 @@ class MainVC: UIViewController {
     }
     
 }
+
+

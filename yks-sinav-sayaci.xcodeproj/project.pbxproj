@@ -12,6 +12,8 @@
 		5972E5CA279B610F0030DE87 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972E5C9279B610F0030DE87 /* Quote.swift */; };
 		5972E5CD279B61860030DE87 /* GetLocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972E5CC279B61860030DE87 /* GetLocalData.swift */; };
 		599C2074279CA33A00B82B2B /* iphoneSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C2073279CA33A00B82B2B /* iphoneSize.swift */; };
+		599C2077279CA69C00B82B2B /* TimeHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C2076279CA69C00B82B2B /* TimeHeaderVC.swift */; };
+		599C2079279CAA7B00B82B2B /* MotivationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C2078279CAA7B00B82B2B /* MotivationVC.swift */; };
 		59C18CD1279C597500FC46FB /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C18CD0279C597500FC46FB /* SettingsVC.swift */; };
 		59EB99EE27997A2500A6ABCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EB99ED27997A2500A6ABCC /* AppDelegate.swift */; };
 		59EB99F027997A2500A6ABCC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EB99EF27997A2500A6ABCC /* SceneDelegate.swift */; };
@@ -30,6 +32,8 @@
 		5972E5C9279B610F0030DE87 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		5972E5CC279B61860030DE87 /* GetLocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLocalData.swift; sourceTree = "<group>"; };
 		599C2073279CA33A00B82B2B /* iphoneSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iphoneSize.swift; sourceTree = "<group>"; };
+		599C2076279CA69C00B82B2B /* TimeHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHeaderVC.swift; sourceTree = "<group>"; };
+		599C2078279CAA7B00B82B2B /* MotivationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationVC.swift; sourceTree = "<group>"; };
 		59C18CD0279C597500FC46FB /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		59EB99EA27997A2500A6ABCC /* yks-sinav-sayaci.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "yks-sinav-sayaci.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59EB99ED27997A2500A6ABCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 		599C2075279CA5FE00B82B2B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				599C2076279CA69C00B82B2B /* TimeHeaderVC.swift */,
+				599C2078279CAA7B00B82B2B /* MotivationVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -239,11 +245,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				59EB9A0527999D6E00A6ABCC /* CalculateRemainder+Ext.swift in Sources */,
+				599C2079279CAA7B00B82B2B /* MotivationVC.swift in Sources */,
 				59F38BC0279C276D00CAA2AE /* TimeInfoView.swift in Sources */,
 				59EB9A02279991CB00A6ABCC /* MainVC.swift in Sources */,
 				5972E5CD279B61860030DE87 /* GetLocalData.swift in Sources */,
 				599C2074279CA33A00B82B2B /* iphoneSize.swift in Sources */,
 				59EB99EE27997A2500A6ABCC /* AppDelegate.swift in Sources */,
+				599C2077279CA69C00B82B2B /* TimeHeaderVC.swift in Sources */,
 				5972E5C3279B59D70030DE87 /* MyCustomLabel.swift in Sources */,
 				59EB99F027997A2500A6ABCC /* SceneDelegate.swift in Sources */,
 				5972E5CA279B610F0030DE87 /* Quote.swift in Sources */,

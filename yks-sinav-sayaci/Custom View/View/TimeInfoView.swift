@@ -26,11 +26,11 @@ class TimeInfoView: UIView {
     }
     
     func set (infoType: InfoType, number:Int){
-                              
         switch infoType {
         case .day:
             timeLabel.text = "\(number)"
             infoLabel.text = "Gün"
+            print(timeLabel.text)
         case .hour:
             timeLabel.text = "\(number)"
             infoLabel.text = "Saat"
@@ -41,12 +41,17 @@ class TimeInfoView: UIView {
             timeLabel.text = "\(number)"
             infoLabel.text = "Saniye"
         }
+       
+        print("view set")
     }
     
     private func configure() {
         backgroundColor     = .white
         layer.cornerRadius  = 10
         clipsToBounds       = true
+        
+        timeLabel.text = "146"
+        infoLabel.text = "Gün"
         
         addSubview(timeLabel)
         addSubview(infoLabel)
