@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		596231C3279D8F53001B83AA /* MyCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596231C2279D8F53001B83AA /* MyCustomButton.swift */; };
 		5972E5C3279B59D70030DE87 /* MyCustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972E5C2279B59D70030DE87 /* MyCustomLabel.swift */; };
 		5972E5C7279B60880030DE87 /* quote.json in Resources */ = {isa = PBXBuildFile; fileRef = 5972E5C6279B60880030DE87 /* quote.json */; };
 		5972E5CA279B610F0030DE87 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972E5C9279B610F0030DE87 /* Quote.swift */; };
@@ -21,12 +22,13 @@
 		59EB99F727997A2600A6ABCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59EB99F627997A2600A6ABCC /* Assets.xcassets */; };
 		59EB99FA27997A2600A6ABCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59EB99F827997A2600A6ABCC /* LaunchScreen.storyboard */; };
 		59EB9A02279991CB00A6ABCC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EB9A01279991CB00A6ABCC /* MainVC.swift */; };
-		59EB9A0527999D6E00A6ABCC /* CalculateRemainder+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EB9A0427999D6E00A6ABCC /* CalculateRemainder+Ext.swift */; };
+		59EB9A0527999D6E00A6ABCC /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EB9A0427999D6E00A6ABCC /* ViewController+Ext.swift */; };
 		59EB9A0827999E2200A6ABCC /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EB9A0727999E2200A6ABCC /* Date+Ext.swift */; };
 		59F38BC0279C276D00CAA2AE /* TimeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F38BBF279C276D00CAA2AE /* TimeInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		596231C2279D8F53001B83AA /* MyCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomButton.swift; sourceTree = "<group>"; };
 		5972E5C2279B59D70030DE87 /* MyCustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomLabel.swift; sourceTree = "<group>"; };
 		5972E5C6279B60880030DE87 /* quote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = quote.json; sourceTree = "<group>"; };
 		5972E5C9279B610F0030DE87 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
@@ -43,7 +45,7 @@
 		59EB99F927997A2600A6ABCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59EB99FB27997A2600A6ABCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59EB9A01279991CB00A6ABCC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		59EB9A0427999D6E00A6ABCC /* CalculateRemainder+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalculateRemainder+Ext.swift"; sourceTree = "<group>"; };
+		59EB9A0427999D6E00A6ABCC /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
 		59EB9A0727999E2200A6ABCC /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		59F38BBF279C276D00CAA2AE /* TimeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,9 +61,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		596231C1279D8F3B001B83AA /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				596231C2279D8F53001B83AA /* MyCustomButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		5972E5C1279B59B20030DE87 /* Custom View */ = {
 			isa = PBXGroup;
 			children = (
+				596231C1279D8F3B001B83AA /* Button */,
 				599C2075279CA5FE00B82B2B /* ViewController */,
 				59F38BBE279C274E00CAA2AE /* View */,
 				5972E5C5279B5A180030DE87 /* Label */,
@@ -145,7 +156,7 @@
 		59EB9A0327999D5100A6ABCC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				59EB9A0427999D6E00A6ABCC /* CalculateRemainder+Ext.swift */,
+				59EB9A0427999D6E00A6ABCC /* ViewController+Ext.swift */,
 				59EB9A0727999E2200A6ABCC /* Date+Ext.swift */,
 				599C2073279CA33A00B82B2B /* iphoneSize.swift */,
 			);
@@ -244,10 +255,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59EB9A0527999D6E00A6ABCC /* CalculateRemainder+Ext.swift in Sources */,
+				59EB9A0527999D6E00A6ABCC /* ViewController+Ext.swift in Sources */,
 				599C2079279CAA7B00B82B2B /* MotivationVC.swift in Sources */,
 				59F38BC0279C276D00CAA2AE /* TimeInfoView.swift in Sources */,
 				59EB9A02279991CB00A6ABCC /* MainVC.swift in Sources */,
+				596231C3279D8F53001B83AA /* MyCustomButton.swift in Sources */,
 				5972E5CD279B61860030DE87 /* GetLocalData.swift in Sources */,
 				599C2074279CA33A00B82B2B /* iphoneSize.swift in Sources */,
 				59EB99EE27997A2500A6ABCC /* AppDelegate.swift in Sources */,

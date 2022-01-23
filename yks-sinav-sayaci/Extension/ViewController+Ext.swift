@@ -27,5 +27,13 @@ extension UIViewController{
 
         return (realDay,realHour,realMinute,realSecond)
     }
+    
+    func showAlertOnMainThread(title: String, message: String){
+        let alertControl = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        present(alertControl, animated: true) {
+            self.dismiss(animated: true)
+        }
+    }
 
 }

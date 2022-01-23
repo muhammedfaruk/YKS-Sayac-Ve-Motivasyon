@@ -40,8 +40,6 @@ class TimeInfoView: UIView {
             timeLabel.text = "\(number)"
             infoLabel.text = "Saniye"
         }
-       
-        print("view set")
     }
     
     private func configure() {

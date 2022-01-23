@@ -15,7 +15,7 @@ class MainVC: UIViewController {
         
     let headerContainerView     = UIView()
     let motivationContainerView = UIView()
-    
+   
         
         
     override func viewDidLoad() {
@@ -56,21 +56,24 @@ class MainVC: UIViewController {
     
     private func configureMotivationView(){
         view.addSubview(motivationContainerView)
-        
-        motivationContainerView.backgroundColor = UIColor(red: 79.0/255, green: 189.0/255, blue: 186.0/255, alpha: 1.0)
-        motivationContainerView.layer.cornerRadius   = 10
+       
+        motivationContainerView.backgroundColor     = UIColor(red: 79.0/255, green: 189.0/255, blue: 186.0/255, alpha: 1.0)
+        motivationContainerView.layer.cornerRadius  = 10
         motivationContainerView.translatesAutoresizingMaskIntoConstraints = false
                         
-        let height:CGFloat = DeviceTypes.isiPhone8Zoomed || DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Standard ?  300 : 400
+        let height:CGFloat = DeviceTypes.isiPhone8Zoomed || DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Standard ?  300 : 350
         
         NSLayoutConstraint.activate([
             motivationContainerView.topAnchor.constraint(equalTo: headerContainerView.bottomAnchor, constant: 25),
             motivationContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             motivationContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             motivationContainerView.heightAnchor.constraint(equalToConstant: height),
+            
         ])
     }
     
+    
+   
     
     func add(childVC : UIViewController, containerView: UIView){
         addChild(childVC)

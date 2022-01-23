@@ -10,10 +10,13 @@ import UIKit
 class MotivationVC: UIViewController {
   
     let motivationImage     = UIImageView()
-    let motivationTitle     = MyCustomLabel(size: 46,color: .white)
-    let motivationLabel     = MyCustomLabel(size: 34 , color: .white)
+    let motivationTitle     = MyCustomLabel(size: 44,color: .white)
+    let motivationLabel     = MyCustomLabel(size: 30 , color: .white)
+    let shareButton         = MyCustomButton(systemImage: "square.and.arrow.up")
+    let copyButton          = MyCustomButton(systemImage: "doc.on.doc")
     
     var quoteTexts  = [Quote]()
+    var randomQuote : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,34 +31,73 @@ class MotivationVC: UIViewController {
         view.addSubview(motivationImage)
         view.addSubview(motivationTitle)
         view.addSubview(motivationLabel)
+        view.addSubview(shareButton)
+        view.addSubview(copyButton)
         
         view.backgroundColor      = UIColor(red: 79.0/255, green: 189.0/255, blue: 186.0/255, alpha: 1.0)
         view.layer.cornerRadius   = 10
                 
         motivationImage.translatesAutoresizingMaskIntoConstraints   = false
         
-        motivationTitle.text          = "Günün Sözü"
+        motivationTitle.text          = "Motivasyon Sözleri"
+        
         motivationImage.image         = UIImage(named: "Layer1")
         motivationImage.contentMode   = .scaleAspectFit
         
-        motivationLabel.text = quoteTexts.randomElement()?.text
-        
+        randomQuote                   = quoteTexts.randomElement()?.text
+        motivationLabel.text          = randomQuote
+       
+        shareButton.addTarget(self, action: #selector(didTapShareButton), for: .touchUpInside)
+        copyButton.addTarget(self, action: #selector(didTapCopyButton), for: .touchUpInside)
         NSLayoutConstraint.activate([
             motivationImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             motivationImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             motivationImage.heightAnchor.constraint(equalTo: motivationImage.widthAnchor),
-            motivationImage.widthAnchor.constraint(equalToConstant: 90),
+            motivationImage.widthAnchor.constraint(equalToConstant: 60),
             
             motivationTitle.centerYAnchor.constraint(equalTo: motivationImage.centerYAnchor),
-            motivationTitle.leadingAnchor.constraint(equalTo: motivationImage.trailingAnchor),
-            motivationTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            motivationTitle.heightAnchor.constraint(equalToConstant: 50),
+            motivationTitle.leadingAnchor.constraint(equalTo: motivationImage.trailingAnchor, constant: 10),
+            motivationTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            motivationTitle.heightAnchor.constraint(equalToConstant: 48),
             
-            motivationLabel.topAnchor.constraint(equalTo: motivationImage.bottomAnchor),
+            motivationLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             motivationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             motivationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            motivationLabel.heightAnchor.constraint(equalToConstant: 200)
+            motivationLabel.heightAnchor.constraint(equalToConstant: 150),
+                        
+            copyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-10),
+            copyButton.heightAnchor.constraint(equalToConstant: 50),
+            copyButton.widthAnchor.constraint(equalToConstant: 50),
+            copyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            
+            shareButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-10),
+            shareButton.heightAnchor.constraint(equalToConstant: 50),
+            shareButton.widthAnchor.constraint(equalToConstant: 50),
+            shareButton.trailingAnchor.constraint(equalTo: copyButton.leadingAnchor, constant: -10)
         ])
+    }
+    
+    
+    @objc func didTapShareButton() {
+               // text to share
+               let text = randomQuote ?? ""
+               // set up activity view controller
+               let textToShare = [text]
+               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+               
+               // exclude some activity types from the list (optional)
+               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToTwitter ]
+               
+               // present the view controller
+               self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
+    @objc func didTapCopyButton() {
+              
+        UIPasteboard.general.string = randomQuote
+        showAlertOnMainThread(title: "", message: "Kopyalandı")
     }
     
     
