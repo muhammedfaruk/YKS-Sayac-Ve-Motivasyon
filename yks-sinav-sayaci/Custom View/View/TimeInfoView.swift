@@ -29,8 +29,7 @@ class TimeInfoView: UIView {
         switch infoType {
         case .day:
             timeLabel.text = "\(number)"
-            infoLabel.text = "Gün"
-            print(timeLabel.text)
+            infoLabel.text = "Gün"            
         case .hour:
             timeLabel.text = "\(number)"
             infoLabel.text = "Saat"
@@ -49,10 +48,7 @@ class TimeInfoView: UIView {
         backgroundColor     = .white
         layer.cornerRadius  = 10
         clipsToBounds       = true
-        
-        timeLabel.text = "146"
-        infoLabel.text = "Gün"
-        
+
         addSubview(timeLabel)
         addSubview(infoLabel)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -16,15 +16,10 @@ class TimeHeaderVC: UIViewController{
     let timeItemThree       = TimeInfoView()
     let timeItemFour        = TimeInfoView()
            
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        let mainVC = MainVC()
-        mainVC.delegate = self
         
-        
+        configureTimer()
         configureStackView()
         configureHeaderView()
     }
@@ -66,32 +61,57 @@ class TimeHeaderVC: UIViewController{
             stackView.heightAnchor.constraint(equalToConstant: 90)
         ])
     }
+    private func configureTimer(){
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(calculateRemainderDate), userInfo: nil, repeats: true)
+    }
+    
+    // target date
+    private func targetDate() -> Date{
+        var dateComponents      = DateComponents()
+        dateComponents.year     = 2022
+        dateComponents.month    = 06
+        dateComponents.day      = 18
+        dateComponents.timeZone = TimeZone(abbreviation: "tr")
+        dateComponents.hour     = 10
+        dateComponents.minute   = 15
+        dateComponents.second   = 00
+
+        // converted DateComponents to Date
+        let userCalendar    = Calendar(identifier: .gregorian)
+        let updatedDate     = userCalendar.date(from: dateComponents)
+        
+        return updatedDate ?? Date()
+    }
+    
+    //Calculate remainder time to target
+    @objc private func calculateRemainderDate(){
+      
+        let interval        = targetDate() - Date()
+      
+        let remainderDay    = interval.day
+        
+        let remainderHour   = interval.hour
+        let remainderMinute = interval.minute
+        let remainderSecond = interval.second
+        
+        let result = calculateRemainderTime(day: remainderDay!, hour: remainderHour!, minute: remainderMinute!, second: remainderSecond!)
+        
+        showRemainderTime(day: result.RemainderDay, hour: result.RemainderHour, minute: result.RemainderMinute, second: result.RemainderSecond)
+    }
     
     
     func showRemainderTime(day:Int,hour:Int,minute:Int,second:Int) {
         
         if day != 0 && hour != 0 && minute != 0 && second != 0 {
-            
             timeItemOne.set(infoType: .day, number: day)
             timeItemTwo.set(infoType: .hour, number: hour)
             timeItemThree.set(infoType: .minute, number: minute)
-            timeItemFour.set(infoType: .second, number: second)
-           
+            timeItemFour.set(infoType: .second, number: second)           
         }else {
             // exam time :D
-            
-            
+  
         }
-        print("deneme")
-    }
-    
-
-}
-
-extension TimeHeaderVC : MainVCDelegate {
-    func getTime(string:String) {
-        print("tiemheader deneme")
-        print(string)
     }
 }
+
 

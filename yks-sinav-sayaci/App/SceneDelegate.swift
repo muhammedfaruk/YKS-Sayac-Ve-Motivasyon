@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func createSettingsNC() -> UINavigationController {
-        let settingsVC = TimeHeaderVC()
+        let settingsVC = SettingsVC()
         settingsVC.tabBarItem = UITabBarItem(title: "Ayarlar", image: UIImage(systemName: "pencil"), tag: 1)
         settingsVC.title = "Ayarlar"
         
