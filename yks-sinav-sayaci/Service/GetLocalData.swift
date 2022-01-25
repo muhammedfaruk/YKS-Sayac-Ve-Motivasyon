@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class GetLocalData {
 
     static let shared = GetLocalData()
