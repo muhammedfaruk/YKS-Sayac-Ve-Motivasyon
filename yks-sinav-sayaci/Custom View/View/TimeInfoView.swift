@@ -13,8 +13,8 @@ enum InfoType {
 
 class TimeInfoView: UIView {
 
-    let timeLabel   = MyCustomLabel(size: 28, color: .black)
-    let infoLabel   = MyCustomLabel(size: 24, color: .black)
+    let timeLabel   = MyCustomLabel(fonte: .ArialRoundedBold, size: 28, color: .black)
+    let infoLabel   = MyCustomLabel(fonte: .ArialMT, size: 24, color: .black)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +43,7 @@ class TimeInfoView: UIView {
     }
     
     private func configure() {
-        backgroundColor     = .white
+        backgroundColor     = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         layer.cornerRadius  = 10
         clipsToBounds       = true
 

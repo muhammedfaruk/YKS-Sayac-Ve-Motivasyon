@@ -15,7 +15,6 @@ extension Date {
         let hour = Calendar.current.dateComponents([.hour], from: previous, to: recent).hour
         let minute = Calendar.current.dateComponents([.minute], from: previous, to: recent).minute
         let second = Calendar.current.dateComponents([.second], from: previous, to: recent).second
-
         return (month: month, day: day, hour: hour, minute: minute, second: second)
     }
 }

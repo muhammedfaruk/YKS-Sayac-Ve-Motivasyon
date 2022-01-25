@@ -15,18 +15,30 @@ class MainVC: UIViewController {
         
     let headerContainerView     = UIView()
     let motivationContainerView = UIView()
-   
+    let bacgroundImage = UIImageView()
         
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .systemBackground
-                
+        configureBacgroundImage()
         configureLayout()
         configureHeaderView()
         configureMotivationView()
+    }
+
+    
+    private func configureBacgroundImage(){        
+        bacgroundImage.image = UIImage(named:"dark")
+        view.addSubview(bacgroundImage)
+        view.sendSubviewToBack(bacgroundImage)
+        bacgroundImage.translatesAutoresizingMaskIntoConstraints = false
         
+        NSLayoutConstraint.activate([
+            bacgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            bacgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bacgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bacgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     
@@ -43,8 +55,7 @@ class MainVC: UIViewController {
     private func configureHeaderView(){
         view.addSubview(headerContainerView)
                 
-        headerContainerView.translatesAutoresizingMaskIntoConstraints = false
-        
+        headerContainerView.translatesAutoresizingMaskIntoConstraints = false    
         NSLayoutConstraint.activate([
             headerContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             headerContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
@@ -56,9 +67,7 @@ class MainVC: UIViewController {
     
     private func configureMotivationView(){
         view.addSubview(motivationContainerView)
-       
-        motivationContainerView.backgroundColor     = UIColor(red: 79.0/255, green: 189.0/255, blue: 186.0/255, alpha: 1.0)
-        motivationContainerView.layer.cornerRadius  = 10
+                
         motivationContainerView.translatesAutoresizingMaskIntoConstraints = false
                         
         let height:CGFloat = DeviceTypes.isiPhone8Zoomed || DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Standard ?  300 : 350

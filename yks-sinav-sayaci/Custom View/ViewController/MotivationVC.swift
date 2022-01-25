@@ -8,10 +8,10 @@
 import UIKit
 
 class MotivationVC: UIViewController {
-  
+    
     let motivationImage     = UIImageView()
-    let motivationTitle     = MyCustomLabel(size: 44,color: .white)
-    let motivationLabel     = MyCustomLabel(size: 30 , color: .white)
+    let motivationTitle     = MyCustomLabel(fonte: .ArialRoundedBold, size: 44,color: .white)
+    let motivationLabel     = MyCustomLabel(fonte: .ArialMT, size: 30 , color: .white)
     let shareButton         = MyCustomButton(systemImage: "square.and.arrow.up")
     let copyButton          = MyCustomButton(systemImage: "doc.on.doc")
     
@@ -20,9 +20,28 @@ class MotivationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         getQuoteTexts()
-        configureMotivationView()
+        configureBlurView()
+        configureMotivationView()       
+    }
+    
+    
+    private func configureBlurView(){
+        let blur = UIBlurEffect(style: .regular)
+        let blurView = UIVisualEffectView(effect: blur)
+        view.addSubview(blurView)
+        blurView.layer.cornerRadius = 10
+        blurView.layer.masksToBounds = true
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            blurView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        view.sendSubviewToBack(blurView)
     }
     
     
@@ -33,20 +52,17 @@ class MotivationVC: UIViewController {
         view.addSubview(motivationLabel)
         view.addSubview(shareButton)
         view.addSubview(copyButton)
-        
-        view.backgroundColor      = UIColor(red: 79.0/255, green: 189.0/255, blue: 186.0/255, alpha: 1.0)
-        view.layer.cornerRadius   = 10
-                
+
         motivationImage.translatesAutoresizingMaskIntoConstraints   = false
         
-        motivationTitle.text          = "Motivasyon Sözleri"
+        motivationTitle.text          = "Motivasyon"
         
         motivationImage.image         = UIImage(named: "Layer1")
         motivationImage.contentMode   = .scaleAspectFit
         
         randomQuote                   = quoteTexts.randomElement()?.text
         motivationLabel.text          = randomQuote
-       
+
         shareButton.addTarget(self, action: #selector(didTapShareButton), for: .touchUpInside)
         copyButton.addTarget(self, action: #selector(didTapCopyButton), for: .touchUpInside)
         NSLayoutConstraint.activate([
@@ -61,10 +77,10 @@ class MotivationVC: UIViewController {
             motivationTitle.heightAnchor.constraint(equalToConstant: 48),
             
             motivationLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            motivationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            motivationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            motivationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:10),
+            motivationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10),
             motivationLabel.heightAnchor.constraint(equalToConstant: 150),
-                        
+            
             copyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-10),
             copyButton.heightAnchor.constraint(equalToConstant: 50),
             copyButton.widthAnchor.constraint(equalToConstant: 50),
@@ -79,25 +95,20 @@ class MotivationVC: UIViewController {
     
     
     @objc func didTapShareButton() {
-               // text to share
-               let text = randomQuote ?? ""
-               // set up activity view controller
-               let textToShare = [text]
-               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-               
-               // exclude some activity types from the list (optional)
-               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToTwitter ]
-               
-               // present the view controller
-               self.present(activityViewController, animated: true, completion: nil)
+        // text to share
+        let text = randomQuote ?? ""
+        // set up activity view controller
+        let textToShare = [text]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     
     @objc func didTapCopyButton() {
-              
         UIPasteboard.general.string = randomQuote
-        showAlertOnMainThread(title: "", message: "Kopyalandı")
+        showAlert(title: "", message: "Kopyalandı")
     }
     
     
@@ -113,5 +124,5 @@ class MotivationVC: UIViewController {
             }
         }
     }
-
+    
 }

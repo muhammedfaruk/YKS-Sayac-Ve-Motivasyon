@@ -31,7 +31,7 @@ class MyCustomButton: UIButton {
     private func configure() {
         layer.cornerRadius  = 10
         clipsToBounds       = true
-        backgroundColor     = UIColor(red: 7.0/255, green: 34.0/255, blue: 39.0/255, alpha: 0.6)
+        backgroundColor     = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         translatesAutoresizingMaskIntoConstraints = false                     
         
         addSubview(butonImage)

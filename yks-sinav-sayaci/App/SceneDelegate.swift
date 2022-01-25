@@ -23,6 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.rootViewController = createTabBar()
         window?.makeKeyAndVisible()
+        
+       
     }
     
     
@@ -45,8 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
 
     func createTabBar() -> UITabBarController {
-        UITabBar.appearance().tintColor = .systemGreen
-        
+        UITabBar.appearance().tintColor = .systemGreen            
         let tabbarController = UITabBarController()
         tabbarController.viewControllers = [createMainNC(),createSettingsNC()]
         

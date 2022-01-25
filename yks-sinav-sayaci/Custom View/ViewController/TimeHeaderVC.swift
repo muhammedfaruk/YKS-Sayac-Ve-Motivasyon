@@ -10,7 +10,7 @@ import UIKit
 class TimeHeaderVC: UIViewController{
     
     let stackView           = UIStackView()
-    let titleLabel          = MyCustomLabel(size: 36,color: .white)
+    let titleLabel          = MyCustomLabel(fonte: .ArialRoundedBold, size: 36,color: .white)
     let timeItemOne         = TimeInfoView()
     let timeItemTwo         = TimeInfoView()
     let timeItemThree       = TimeInfoView()
@@ -22,6 +22,23 @@ class TimeHeaderVC: UIViewController{
         configureTimer()
         configureStackView()
         configureHeaderView()
+        
+        
+        let blur = UIBlurEffect(style: .regular)
+        let blurView = UIVisualEffectView(effect: blur)
+        view.addSubview(blurView)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            blurView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        blurView.layer.cornerRadius = 10
+        blurView.layer.masksToBounds = true
+        view.addSubview(blurView)
+        view.sendSubviewToBack(blurView)
     }
     
     
@@ -35,6 +52,7 @@ class TimeHeaderVC: UIViewController{
         stackView.addArrangedSubview(timeItemFour)
             
         stackView.translatesAutoresizingMaskIntoConstraints = false
+ 
     }
     
     
@@ -44,10 +62,7 @@ class TimeHeaderVC: UIViewController{
         view.addSubview(stackView)
         
         titleLabel.text           = "YKS 2022"
-        
-        view.backgroundColor      = UIColor(red: 53.0/255, green: 133.0/255, blue: 139.0/255, alpha: 1)
-        view.layer.cornerRadius   = 10
-             
+         
         NSLayoutConstraint.activate([         
             
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 12),

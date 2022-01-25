@@ -12,6 +12,9 @@
 		5972E5C7279B60880030DE87 /* quote.json in Resources */ = {isa = PBXBuildFile; fileRef = 5972E5C6279B60880030DE87 /* quote.json */; };
 		5972E5CA279B610F0030DE87 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972E5C9279B610F0030DE87 /* Quote.swift */; };
 		5972E5CD279B61860030DE87 /* GetLocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5972E5CC279B61860030DE87 /* GetLocalData.swift */; };
+		5974AF9D279EDCC4008EF939 /* FirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5974AF9C279EDCC4008EF939 /* FirstCell.swift */; };
+		5974AF9F279EDD4C008EF939 /* SecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5974AF9E279EDD4C008EF939 /* SecondCell.swift */; };
+		5974AFA1279EDD63008EF939 /* ThirdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5974AFA0279EDD63008EF939 /* ThirdCell.swift */; };
 		599C2074279CA33A00B82B2B /* iphoneSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C2073279CA33A00B82B2B /* iphoneSize.swift */; };
 		599C2077279CA69C00B82B2B /* TimeHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C2076279CA69C00B82B2B /* TimeHeaderVC.swift */; };
 		599C2079279CAA7B00B82B2B /* MotivationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C2078279CAA7B00B82B2B /* MotivationVC.swift */; };
@@ -33,6 +36,9 @@
 		5972E5C6279B60880030DE87 /* quote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = quote.json; sourceTree = "<group>"; };
 		5972E5C9279B610F0030DE87 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		5972E5CC279B61860030DE87 /* GetLocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLocalData.swift; sourceTree = "<group>"; };
+		5974AF9C279EDCC4008EF939 /* FirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCell.swift; sourceTree = "<group>"; };
+		5974AF9E279EDD4C008EF939 /* SecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCell.swift; sourceTree = "<group>"; };
+		5974AFA0279EDD63008EF939 /* ThirdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCell.swift; sourceTree = "<group>"; };
 		599C2073279CA33A00B82B2B /* iphoneSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iphoneSize.swift; sourceTree = "<group>"; };
 		599C2076279CA69C00B82B2B /* TimeHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHeaderVC.swift; sourceTree = "<group>"; };
 		599C2078279CAA7B00B82B2B /* MotivationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationVC.swift; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 		5972E5C1279B59B20030DE87 /* Custom View */ = {
 			isa = PBXGroup;
 			children = (
+				5974AF9B279EDCA8008EF939 /* Cell */,
 				596231C1279D8F3B001B83AA /* Button */,
 				599C2075279CA5FE00B82B2B /* ViewController */,
 				59F38BBE279C274E00CAA2AE /* View */,
@@ -111,6 +118,16 @@
 				5972E5CC279B61860030DE87 /* GetLocalData.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		5974AF9B279EDCA8008EF939 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5974AF9C279EDCC4008EF939 /* FirstCell.swift */,
+				5974AF9E279EDD4C008EF939 /* SecondCell.swift */,
+				5974AFA0279EDD63008EF939 /* ThirdCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		599C2075279CA5FE00B82B2B /* ViewController */ = {
@@ -262,13 +279,16 @@
 				596231C3279D8F53001B83AA /* MyCustomButton.swift in Sources */,
 				5972E5CD279B61860030DE87 /* GetLocalData.swift in Sources */,
 				599C2074279CA33A00B82B2B /* iphoneSize.swift in Sources */,
+				5974AF9F279EDD4C008EF939 /* SecondCell.swift in Sources */,
 				59EB99EE27997A2500A6ABCC /* AppDelegate.swift in Sources */,
+				5974AFA1279EDD63008EF939 /* ThirdCell.swift in Sources */,
 				599C2077279CA69C00B82B2B /* TimeHeaderVC.swift in Sources */,
 				5972E5C3279B59D70030DE87 /* MyCustomLabel.swift in Sources */,
 				59EB99F027997A2500A6ABCC /* SceneDelegate.swift in Sources */,
 				5972E5CA279B610F0030DE87 /* Quote.swift in Sources */,
 				59EB9A0827999E2200A6ABCC /* Date+Ext.swift in Sources */,
 				59C18CD1279C597500FC46FB /* SettingsVC.swift in Sources */,
+				5974AF9D279EDCC4008EF939 /* FirstCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
