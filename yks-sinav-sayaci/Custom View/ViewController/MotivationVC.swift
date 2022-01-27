@@ -108,7 +108,7 @@ class MotivationVC: UIViewController {
     
     @objc func didTapCopyButton() {
         UIPasteboard.general.string = randomQuote
-        showAlert(title: "", message: "Kopyalandı")
+        //showAlert(title: "", message: "Kopyalandı")
     }
     
     

@@ -9,100 +9,99 @@ import UIKit
 
 class TimeHeaderVC: UIViewController{
     
-    let stackView           = UIStackView()
+    let stackView          = UIStackView()
     let titleLabel          = MyCustomLabel(fonte: .ArialRoundedBold, size: 36,color: .white)
-    let timeItemOne         = TimeInfoView()
-    let timeItemTwo         = TimeInfoView()
-    let timeItemThree       = TimeInfoView()
-    let timeItemFour        = TimeInfoView()
-           
+
+    let dayLabel            = MyCustomLabel(fonte: .ArialRoundedBold, size: 26, color: .white)
+    let hourLabel           = MyCustomLabel(fonte: .ArialRoundedBold, size: 26, color: .white)
+    let minuteLabel         = MyCustomLabel(fonte: .ArialRoundedBold, size: 26, color: .white)
+    let secondLabel         = MyCustomLabel(fonte: .ArialRoundedBold, size: 26, color: .white)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configureTimer()
-        configureStackView()
+        configureBlurView()
+        configureLabels()
         configureHeaderView()
-        
-        
-        let blur = UIBlurEffect(style: .regular)
-        let blurView = UIVisualEffectView(effect: blur)
+        configureTimer()
+    }
+    
+    
+    private func configureBlurView(){
+        let blur                        = UIBlurEffect(style: .regular)
+        let blurView                    = UIVisualEffectView(effect: blur)
         view.addSubview(blurView)
         blurView.translatesAutoresizingMaskIntoConstraints = false
-        
+        blurView.layer.cornerRadius     = 10
+        blurView.layer.masksToBounds    = true
+   
         NSLayoutConstraint.activate([
             blurView.topAnchor.constraint(equalTo: view.topAnchor),
             blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        blurView.layer.cornerRadius = 10
-        blurView.layer.masksToBounds = true
-        view.addSubview(blurView)
-        view.sendSubviewToBack(blurView)
     }
     
     
-    private func configureStackView(){
+    private func configureLabels(){
         
-        stackView.distribution  = .equalSpacing
-        stackView.axis          = .horizontal
-        stackView.addArrangedSubview(timeItemOne)
-        stackView.addArrangedSubview(timeItemTwo)
-        stackView.addArrangedSubview(timeItemThree)
-        stackView.addArrangedSubview(timeItemFour)
-            
-        stackView.translatesAutoresizingMaskIntoConstraints = false
- 
+        let timeViewArray = [dayLabel,hourLabel,minuteLabel,secondLabel]
+  
+        for timeView in timeViewArray {
+            view.addSubview(timeView)
+            timeView.backgroundColor     = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+            timeView.layer.cornerRadius  = 15
+            timeView.clipsToBounds       = true
+           
+            NSLayoutConstraint.activate([
+                timeView.widthAnchor.constraint(equalToConstant: 80),
+            ])
+        }
     }
     
     
     private func configureHeaderView(){
-        
         view.addSubview(titleLabel)
         view.addSubview(stackView)
         
         titleLabel.text           = "YKS 2022"
-         
-        NSLayoutConstraint.activate([         
+        
+        stackView.distribution  = .equalSpacing
+        stackView.axis          = .horizontal
+        stackView.addArrangedSubview(dayLabel)
+        stackView.addArrangedSubview(hourLabel)
+        stackView.addArrangedSubview(minuteLabel)
+        stackView.addArrangedSubview(secondLabel)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
             
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 40),
-                                 
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
-            stackView.heightAnchor.constraint(equalToConstant: 90)
+            
+            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            stackView.heightAnchor.constraint(equalToConstant: 90),
+  
         ])
     }
+    
+    
+    
+    // MARK : calculating time
+    
     private func configureTimer(){
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(calculateRemainderDate), userInfo: nil, repeats: true)
     }
     
-    // target date
-    private func targetDate() -> Date{
-        var dateComponents      = DateComponents()
-        dateComponents.year     = 2022
-        dateComponents.month    = 06
-        dateComponents.day      = 18
-        dateComponents.timeZone = TimeZone(abbreviation: "tr")
-        dateComponents.hour     = 10
-        dateComponents.minute   = 15
-        dateComponents.second   = 00
-
-        // converted DateComponents to Date
-        let userCalendar    = Calendar(identifier: .gregorian)
-        let updatedDate     = userCalendar.date(from: dateComponents)
+    @objc func calculateRemainderDate(){
         
-        return updatedDate ?? Date()
-    }
-    
-    //Calculate remainder time to target
-    @objc private func calculateRemainderDate(){
-      
         let interval        = targetDate() - Date()
-      
+        
         let remainderDay    = interval.day
         
         let remainderHour   = interval.hour
@@ -118,15 +117,14 @@ class TimeHeaderVC: UIViewController{
     func showRemainderTime(day:Int,hour:Int,minute:Int,second:Int) {
         
         if day != 0 && hour != 0 && minute != 0 && second != 0 {
-            timeItemOne.set(infoType: .day, number: day)
-            timeItemTwo.set(infoType: .hour, number: hour)
-            timeItemThree.set(infoType: .minute, number: minute)
-            timeItemFour.set(infoType: .second, number: second)           
-        }else {
-            // exam time :D
-  
+            dayLabel.text = "\(day)\nGün"
+            hourLabel.text = "\(hour)\nSaat"
+            minuteLabel.text = "\(minute)\nDakika"
+            secondLabel.text = "\(second)\nSaniye"
         }
     }
+    
+    
 }
 
 

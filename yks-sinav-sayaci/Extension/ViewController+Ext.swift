@@ -28,12 +28,32 @@ extension UIViewController{
         return (realDay,realHour,realMinute,realSecond)
     }
     
-    func showAlert(title: String, message: String){
-        let alertControl = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    // target date
+    func targetDate() -> Date{
+        var dateComponents      = DateComponents()
+        dateComponents.year     = 2022
+        dateComponents.month    = 06
+        dateComponents.day      = 18
+        dateComponents.timeZone = TimeZone(abbreviation: "tr")
+        dateComponents.hour     = 10
+        dateComponents.minute   = 15
+        dateComponents.second   = 00
+
+        // converted DateComponents to Date
+        let userCalendar    = Calendar(identifier: .gregorian)
+        let updatedDate     = userCalendar.date(from: dateComponents)
         
-        present(alertControl, animated: true) {
-            self.dismiss(animated: true)
-        }
-    }
+        return updatedDate ?? Date()
+    }    
+    
+//    func showAlert(title: String, message: String){
+//        let alertControl = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        
+//        present(alertControl, animated: true) {
+//            self.dismiss(animated: true)
+//        }
+//    }
+    
+    
 
 }

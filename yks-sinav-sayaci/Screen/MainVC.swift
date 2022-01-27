@@ -44,7 +44,7 @@ class MainVC: UIViewController {
     
     func configureLayout(){
         DispatchQueue.main.async {
-            let timeHeaderVC = UINavigationController(rootViewController: TimeHeaderVC())
+            let timeHeaderVC = TimeHeaderVC()
             self.add(childVC: timeHeaderVC, containerView: self.headerContainerView)
             let motivationVC = MotivationVC()
             self.add(childVC: motivationVC, containerView: self.motivationContainerView)

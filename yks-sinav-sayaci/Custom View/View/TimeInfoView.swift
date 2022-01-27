@@ -13,12 +13,11 @@ enum InfoType {
 
 class TimeInfoView: UIView {
 
-    let timeLabel   = MyCustomLabel(fonte: .ArialRoundedBold, size: 28, color: .black)
-    let infoLabel   = MyCustomLabel(fonte: .ArialMT, size: 24, color: .black)
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configure()        
     }
     
     required init?(coder: NSCoder) {
@@ -26,48 +25,27 @@ class TimeInfoView: UIView {
     }
     
     func set (infoType: InfoType, number:Int){
-        switch infoType {
-        case .day:
-            timeLabel.text = "\(number)"
-            infoLabel.text = "Gün"            
-        case .hour:
-            timeLabel.text = "\(number)"
-            infoLabel.text = "Saat"
-        case .minute:
-            timeLabel.text = "\(number)"
-            infoLabel.text = "Dakika"
-        case .second:
-            timeLabel.text = "\(number)"
-            infoLabel.text = "Saniye"
-        }
+//        switch infoType {
+//        case .day:
+//            timeLabel.text = "\(number)"
+//            infoLabel.text = "Gün"            
+//        case .hour:
+//            timeLabel.text = "\(number)"
+//            infoLabel.text = "Saat"
+//        case .minute:
+//            timeLabel.text = "\(number)"
+//            infoLabel.text = "Dakika"
+//        case .second:
+//            timeLabel.text = "\(number)"
+//            infoLabel.text = "Saniye"
+//        }
     }
     
     private func configure() {
-        backgroundColor     = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-        layer.cornerRadius  = 10
-        clipsToBounds       = true
-
-        addSubview(timeLabel)
-        addSubview(infoLabel)
-        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-
-            self.widthAnchor.constraint(equalToConstant: 80),
-                        
-            timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            timeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            timeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            timeLabel.heightAnchor.constraint(equalToConstant: 32),
-            
-            infoLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 5),
-            infoLabel.centerXAnchor.constraint(equalTo: timeLabel.centerXAnchor),
-            infoLabel.widthAnchor.constraint(equalTo: timeLabel.widthAnchor),
-            infoLabel.heightAnchor.constraint(equalToConstant: 28)
-            
-        ])
+      
         
     }
-
+    
+   
+   
 }
