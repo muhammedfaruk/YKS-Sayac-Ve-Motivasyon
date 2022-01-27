@@ -13,9 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
@@ -29,8 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func createSettingsNC() -> UINavigationController {
-        let settingsVC = SettingsVC()
-        settingsVC.tabBarItem = UITabBarItem(title: "Ayarlar", image: UIImage(systemName: "pencil"), tag: 1)
+        let settingsVC = SettingsVC()        
+        
+        settingsVC.tabBarItem = UITabBarItem(title: "Ayarlar", image: UIImage(named: "settings"), tag: 1)
         settingsVC.title = "Ayarlar"
         
         return UINavigationController(rootViewController: settingsVC)
@@ -47,7 +46,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
 
     func createTabBar() -> UITabBarController {
-        UITabBar.appearance().tintColor = .systemGreen            
+        UITabBar.appearance().tintColor                 = .systemGreen
+        UITabBar.appearance().unselectedItemTintColor   = .white
         let tabbarController = UITabBarController()
         tabbarController.viewControllers = [createMainNC(),createSettingsNC()]
         

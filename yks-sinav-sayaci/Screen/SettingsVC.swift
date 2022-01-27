@@ -12,115 +12,84 @@ class SettingsVC: UIViewController {
     var tableView : UITableView!
     
     
-    let darkCell : UITableViewCell = {
+    let developerCell : UITableViewCell = {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "📱 Dark Mode"
-        
-        return cell
-    }()
-    
-    
-    let secondCell : UITableViewCell = {
-        let cell = UITableViewCell()
+        cell.backgroundColor = .gray        
+        cell.textLabel?.text = "🧑‍💻 Muhammed Faruk Söğüt"
+        cell.textLabel?.textColor = .white
         return cell
     }()
     
     
     let feedBackCell : UITableViewCell = {
         let cell = UITableViewCell()
+        cell.backgroundColor = .gray
         cell.textLabel?.text = "📝 Geri Bildirim Gönder"
+        cell.textLabel?.textColor = .white
         return cell
     }()
     
     
     let reviewOnStoreCell : UITableViewCell = {
         let cell = UITableViewCell()
+        cell.backgroundColor = .gray
         cell.textLabel?.text = "🌟 Uygulamayı Değerlendir"
+        cell.textLabel?.textColor = .white
         return cell
     }()
     
-    
-    let switchBtn : UISwitch = {
-        let switchBtn = UISwitch()
-        switchBtn.translatesAutoresizingMaskIntoConstraints = false
-        switchBtn.addTarget(self, action: #selector(switchValueDidChange(_:)), for: .valueChanged)
-        return switchBtn
-    }()
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.barStyle = .black
         configureTableView()
-        configureCells()
-        darkModeControl()
-                
     }
-    
-    
-    private func darkModeControl(){
-        let object = UserDefaults.standard.bool(forKey: "SwitchState")
-        
-        switchBtn.isOn = object
-        
-        if object{
-            UIApplication.shared.windows.forEach { window in
-                window.overrideUserInterfaceStyle = .dark
-            }
-        }else {
-            UIApplication.shared.windows.forEach {  window in
-                window.overrideUserInterfaceStyle = .light
-            }
-        }
-    }
-    
-    
-    @objc func switchValueDidChange(_ sender: UISwitch!) {
-        
-        UserDefaults.standard.set(sender.isOn, forKey: "SwitchState")
-        
-        if (sender.isOn){
-            UIApplication.shared.windows.forEach { window in
-                window.overrideUserInterfaceStyle = .dark
-            }
-        }
-        else{
-            UIApplication.shared.windows.forEach {  window in
-                window.overrideUserInterfaceStyle = .light
-            }
-        }
-    }
-    
+
     
     private func configureTableView (){
         tableView = UITableView(frame: view.bounds, style: .insetGrouped)
         view.addSubview(tableView)
+        tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
         
     }
-    private func configureCells(){
-        view.addSubview(darkCell)
-        view.addSubview(secondCell)
-        view.addSubview(feedBackCell)
-        
-        darkCell.addSubview(switchBtn)
-        
-        
-        
-        NSLayoutConstraint.activate([
-            switchBtn.topAnchor.constraint(equalTo: darkCell.topAnchor, constant: 5),
-            switchBtn.trailingAnchor.constraint(equalTo: darkCell.trailingAnchor, constant: -15),
-            switchBtn.heightAnchor.constraint(equalToConstant: 50),
-            switchBtn.widthAnchor.constraint(equalToConstant: 50)
-            
-        ])
-        
+    
+    func mailtoMe(){
+        let email = "muhammedfaruksogut0.com"
+        if let url = URL(string: "mailto:\(email)") {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
+        
+  
 }
 
 extension SettingsVC : UITableViewDelegate,UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+       if let headerView = view as? UITableViewHeaderFooterView {
+           headerView.textLabel?.textColor = .white
+       }
+   }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0 :
+            return "Uygulama Hakkında"
+        case 1 :
+            return "Geliştirici"
+        default:
+            fatalError()
+        }
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -130,9 +99,9 @@ extension SettingsVC : UITableViewDelegate,UITableViewDataSource{
         
         switch section {
         case 0:
-            return 1
-        case 1:
             return 2
+        case 1:
+            return 1
         default:
             fatalError()
         }
@@ -141,20 +110,19 @@ extension SettingsVC : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case 0:
-            switch indexPath.row{
-            case 0:
-                return darkCell
-            default:
-                fatalError()
-            }
-            
-        case 1 :
+        case 0 :
             switch indexPath.row {
             case 0 :
                 return feedBackCell
             case 1 :
                 return reviewOnStoreCell
+            default:
+                fatalError()
+            }
+        case 1 :
+            switch indexPath.row {
+            case 0 :
+                return developerCell
             default:
                 fatalError()
             }
@@ -167,22 +135,14 @@ extension SettingsVC : UITableViewDelegate,UITableViewDataSource{
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 1 && indexPath.row == 0 {
-            // geri bildirim butonu tiklandi
-            let email = "muhammedfaruksogut0.com"
-            if let url = URL(string: "mailto:\(email)") {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url)
-                } else {
-                    UIApplication.shared.openURL(url)
-                }
-            }
-            
+        if indexPath.section == 0 && indexPath.row == 0 {
+           mailtoMe()
         } else if indexPath.section == 1 && indexPath.row == 1{
             // uygulamayı değerlendir
-            
+        } else if indexPath.section == 1 && indexPath.row == 0 {
+          
         }
-        
+ 
     }
     
 }

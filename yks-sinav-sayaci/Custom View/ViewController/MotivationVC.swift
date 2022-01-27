@@ -28,7 +28,7 @@ class MotivationVC: UIViewController {
     
     
     private func configureBlurView(){
-        let blur = UIBlurEffect(style: .regular)
+        let blur = UIBlurEffect(style: .dark)
         let blurView = UIVisualEffectView(effect: blur)
         view.addSubview(blurView)
         blurView.layer.cornerRadius = 10

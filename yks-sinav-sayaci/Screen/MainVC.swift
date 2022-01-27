@@ -7,15 +7,12 @@
 
 import UIKit
 
-protocol MainVCDelegate: AnyObject{
-    func getTime(string: String)
-}
 
 class MainVC: UIViewController {
         
     let headerContainerView     = UIView()
     let motivationContainerView = UIView()
-    let bacgroundImage = UIImageView()
+    let bacgroundImage          = UIImageView()
         
         
     override func viewDidLoad() {
@@ -27,7 +24,9 @@ class MainVC: UIViewController {
     }
 
     
-    private func configureBacgroundImage(){        
+    private func configureBacgroundImage(){
+        navigationController?.navigationBar.barStyle    = .black
+        navigationController?.navigationBar.tintColor   = .white
         bacgroundImage.image = UIImage(named:"dark")
         view.addSubview(bacgroundImage)
         view.sendSubviewToBack(bacgroundImage)
@@ -57,7 +56,7 @@ class MainVC: UIViewController {
                 
         headerContainerView.translatesAutoresizingMaskIntoConstraints = false    
         NSLayoutConstraint.activate([
-            headerContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            headerContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             headerContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             headerContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             headerContainerView.heightAnchor.constraint(equalToConstant: 200),
@@ -81,9 +80,7 @@ class MainVC: UIViewController {
         ])
     }
     
-    
-   
-    
+        
     func add(childVC : UIViewController, containerView: UIView){
         addChild(childVC)
         containerView.addSubview(childVC.view)

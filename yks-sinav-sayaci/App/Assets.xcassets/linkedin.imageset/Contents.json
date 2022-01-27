@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "linkedin.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "dark.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },

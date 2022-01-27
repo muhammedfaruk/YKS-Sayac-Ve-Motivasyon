@@ -24,7 +24,13 @@ class MyCustomButton: UIButton {
     convenience init(systemImage: String) {
         self.init(frame: .zero)
         let imageIcon = UIImage(systemName: systemImage)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+            butonImage.image = imageIcon        
+    }
+    
+    func withName(imageName: String) {
+        let imageIcon = UIImage(systemName: imageName)?.withTintColor(.white, renderingMode: .alwaysOriginal)
             butonImage.image = imageIcon
+        configure()
     }
     
     

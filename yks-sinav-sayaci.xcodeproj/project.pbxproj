@@ -27,7 +27,6 @@
 		59EB9A02279991CB00A6ABCC /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EB9A01279991CB00A6ABCC /* MainVC.swift */; };
 		59EB9A0527999D6E00A6ABCC /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EB9A0427999D6E00A6ABCC /* ViewController+Ext.swift */; };
 		59EB9A0827999E2200A6ABCC /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EB9A0727999E2200A6ABCC /* Date+Ext.swift */; };
-		59F38BC0279C276D00CAA2AE /* TimeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F38BBF279C276D00CAA2AE /* TimeInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +42,7 @@
 		599C2076279CA69C00B82B2B /* TimeHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHeaderVC.swift; sourceTree = "<group>"; };
 		599C2078279CAA7B00B82B2B /* MotivationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationVC.swift; sourceTree = "<group>"; };
 		59C18CD0279C597500FC46FB /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		59EB99EA27997A2500A6ABCC /* yks-sinav-sayaci.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "yks-sinav-sayaci.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		59EB99EA27997A2500A6ABCC /* yks-sinav-sayaci.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "yks-sinav-sayaci.app"; path = "/Users/muhammedfaruksogut/Desktop/yks-sinav-sayaci/build/Debug-iphoneos/yks-sinav-sayaci.app"; sourceTree = "<absolute>"; };
 		59EB99ED27997A2500A6ABCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59EB99EF27997A2500A6ABCC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		59EB99F427997A2500A6ABCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,7 +52,6 @@
 		59EB9A01279991CB00A6ABCC /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		59EB9A0427999D6E00A6ABCC /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
 		59EB9A0727999E2200A6ABCC /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		59F38BBF279C276D00CAA2AE /* TimeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +79,6 @@
 				5974AF9B279EDCA8008EF939 /* Cell */,
 				596231C1279D8F3B001B83AA /* Button */,
 				599C2075279CA5FE00B82B2B /* ViewController */,
-				59F38BBE279C274E00CAA2AE /* View */,
 				5972E5C5279B5A180030DE87 /* Label */,
 			);
 			path = "Custom View";
@@ -143,16 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				59EB99EC27997A2500A6ABCC /* yks-sinav-sayaci */,
-				59EB99EB27997A2500A6ABCC /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		59EB99EB27997A2500A6ABCC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				59EB99EA27997A2500A6ABCC /* yks-sinav-sayaci.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		59EB99EC27997A2500A6ABCC /* yks-sinav-sayaci */ = {
@@ -190,14 +178,6 @@
 				59EB99F827997A2600A6ABCC /* LaunchScreen.storyboard */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		59F38BBE279C274E00CAA2AE /* View */ = {
-			isa = PBXGroup;
-			children = (
-				59F38BBF279C276D00CAA2AE /* TimeInfoView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,7 +224,7 @@
 				Base,
 			);
 			mainGroup = 59EB99E127997A2400A6ABCC;
-			productRefGroup = 59EB99EB27997A2500A6ABCC /* Products */;
+			productRefGroup = 59EB99E127997A2400A6ABCC;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -274,7 +254,6 @@
 			files = (
 				59EB9A0527999D6E00A6ABCC /* ViewController+Ext.swift in Sources */,
 				599C2079279CAA7B00B82B2B /* MotivationVC.swift in Sources */,
-				59F38BC0279C276D00CAA2AE /* TimeInfoView.swift in Sources */,
 				59EB9A02279991CB00A6ABCC /* MainVC.swift in Sources */,
 				596231C3279D8F53001B83AA /* MyCustomButton.swift in Sources */,
 				5972E5CD279B61860030DE87 /* GetLocalData.swift in Sources */,

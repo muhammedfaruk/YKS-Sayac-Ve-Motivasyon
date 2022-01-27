@@ -9,7 +9,7 @@ import UIKit
 
 class TimeHeaderVC: UIViewController{
     
-    let stackView          = UIStackView()
+    let stackView           = UIStackView()
     let titleLabel          = MyCustomLabel(fonte: .ArialRoundedBold, size: 36,color: .white)
 
     let dayLabel            = MyCustomLabel(fonte: .ArialRoundedBold, size: 26, color: .white)
@@ -28,7 +28,7 @@ class TimeHeaderVC: UIViewController{
     
     
     private func configureBlurView(){
-        let blur                        = UIBlurEffect(style: .regular)
+        let blur                        = UIBlurEffect(style: .dark)
         let blurView                    = UIVisualEffectView(effect: blur)
         view.addSubview(blurView)
         blurView.translatesAutoresizingMaskIntoConstraints = false
