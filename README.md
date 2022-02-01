@@ -15,9 +15,7 @@ Download : https://apps.apple.com/tr/app/yks-2022-saya%C3%A7-ve-motivasyon/id160
 
 ### Screenshots
 
-<img src="" data-canonical-src="" width="250" height="500" />
+<img src="https://user-images.githubusercontent.com/76944306/152046236-775f5f23-fa40-4a58-8429-ffd328389c17.png" data-canonical-src="" width="250" height="500" /><img src="https://user-images.githubusercontent.com/76944306/152046280-6f89045d-f14c-4d10-ae63-057109f47a28.png" data-canonical-src="" width="250" height="500" />
 
 
-
-<hr>
 
