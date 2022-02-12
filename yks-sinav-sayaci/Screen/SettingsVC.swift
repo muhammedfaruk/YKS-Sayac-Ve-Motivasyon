@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class SettingsVC: UIViewController {
     
@@ -56,15 +57,25 @@ class SettingsVC: UIViewController {
         tableView.dataSource = self
         
     }
-    
+  
     func mailtoMe(){
-        let email = "muhammedfaruksogut0.com"
+        let email = "muhammedfaruksogut0@gmail.com"
         if let url = URL(string: "mailto:\(email)") {
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url)
             } else {
                 UIApplication.shared.openURL(url)
             }
+        }
+    }
+    
+    func rateApp() {       
+        guard let scene = view.window?.windowScene else {return}
+        
+        if #available(iOS 14.0, *) {
+            SKStoreReviewController.requestReview(in: scene)
+        } else {
+            
         }
     }
         
@@ -137,12 +148,9 @@ extension SettingsVC : UITableViewDelegate,UITableViewDataSource{
         
         if indexPath.section == 0 && indexPath.row == 0 {
            mailtoMe()
-        } else if indexPath.section == 1 && indexPath.row == 1{
-            // uygulamayı değerlendir
-        } else if indexPath.section == 1 && indexPath.row == 0 {
-          
+        } else if indexPath.section == 0 && indexPath.row == 1{
+           rateApp()
         }
- 
     }
     
 }

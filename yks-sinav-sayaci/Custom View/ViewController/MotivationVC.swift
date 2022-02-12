@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NotificationCenter
 
 class MotivationVC: UIViewController {
     
@@ -23,7 +24,8 @@ class MotivationVC: UIViewController {
         
         getQuoteTexts()
         configureBlurView()
-        configureMotivationView()       
+        configureMotivationView()
+        sendNotfication()
     }
     
     
@@ -108,7 +110,7 @@ class MotivationVC: UIViewController {
     
     @objc func didTapCopyButton() {
         UIPasteboard.general.string = randomQuote
-        //showAlert(title: "", message: "Kopyalandı")
+        showAlert(title: "", message: "Kopyalandı")
     }
     
     
@@ -123,6 +125,30 @@ class MotivationVC: UIViewController {
                 print(error.rawValue)
             }
         }
+    }
+    
+    
+    func sendNotfication(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let permission  = appDelegate.permissionControl
+        
+        guard permission == true else{return}
+        
+        let content     = UNMutableNotificationContent()
+        content.title   = "Motivasyon"
+        content.body    = randomQuote ?? "Yorulunca değil bitirince dur."
+        content.sound   = UNNotificationSound.default
+        
+        var datComp     = DateComponents()
+        datComp.hour    = 12
+        datComp.minute  = 00
+        
+        let trigger     = UNCalendarNotificationTrigger(dateMatching: datComp, repeats: true)
+        
+        let notificationRequest = UNNotificationRequest(identifier: "yksbildirim", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(notificationRequest)
+        
     }
     
 }

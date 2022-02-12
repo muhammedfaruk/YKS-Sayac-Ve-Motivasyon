@@ -53,9 +53,11 @@ class TimeHeaderVC: UIViewController{
             timeView.backgroundColor     = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
             timeView.layer.cornerRadius  = 15
             timeView.clipsToBounds       = true
-           
+            
+            let autoWidth:CGFloat = DeviceTypes.isiPhoneSE ? 65 : 80
+            
             NSLayoutConstraint.activate([
-                timeView.widthAnchor.constraint(equalToConstant: 80),
+                timeView.widthAnchor.constraint(equalToConstant: autoWidth),
             ])
         }
     }

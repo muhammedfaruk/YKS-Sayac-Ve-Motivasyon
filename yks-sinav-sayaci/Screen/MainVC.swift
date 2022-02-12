@@ -9,20 +9,46 @@ import UIKit
 
 
 class MainVC: UIViewController {
-        
+    
+    let scrollView              = UIScrollView()
+    let contentView             = UIView()
     let headerContainerView     = UIView()
     let motivationContainerView = UIView()
     let bacgroundImage          = UIImageView()
-        
-        
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBacgroundImage()
+        configureScrollView()
         configureLayout()
         configureHeaderView()
         configureMotivationView()
     }
-
+    
+    
+    private func configureScrollView(){
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
+    }
+    
+    
     
     private func configureBacgroundImage(){
         navigationController?.navigationBar.barStyle    = .black
@@ -52,35 +78,37 @@ class MainVC: UIViewController {
     
     
     private func configureHeaderView(){
-        view.addSubview(headerContainerView)
-                
-        headerContainerView.translatesAutoresizingMaskIntoConstraints = false    
+        contentView.addSubview(headerContainerView)
+        
+        headerContainerView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            headerContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-            headerContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            headerContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            headerContainerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            headerContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            headerContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
             headerContainerView.heightAnchor.constraint(equalToConstant: 200),
         ])
     }
     
     
     private func configureMotivationView(){
-        view.addSubview(motivationContainerView)
-                
+        contentView.addSubview(motivationContainerView)
+        
         motivationContainerView.translatesAutoresizingMaskIntoConstraints = false
-                        
+        
         let height:CGFloat = DeviceTypes.isiPhone8Zoomed || DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Standard ?  300 : 350
         
         NSLayoutConstraint.activate([
             motivationContainerView.topAnchor.constraint(equalTo: headerContainerView.bottomAnchor, constant: 25),
-            motivationContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            motivationContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            motivationContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            motivationContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            motivationContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             motivationContainerView.heightAnchor.constraint(equalToConstant: height),
             
         ])
     }
     
-        
+    
     func add(childVC : UIViewController, containerView: UIView){
         addChild(childVC)
         containerView.addSubview(childVC.view)

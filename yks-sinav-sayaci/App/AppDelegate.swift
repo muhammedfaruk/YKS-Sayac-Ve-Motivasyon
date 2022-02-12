@@ -6,14 +6,27 @@
 //
 
 import UIKit
+import NotificationCenter
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var permissionControl:Bool = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { granted, error in
+        
+            self.permissionControl = granted
+            
+            guard granted == true else {print("izin başarısız")
+                return
+            }
+            print("izin başarılı")
+        }
+     
         return true
     }
 
@@ -30,7 +43,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
 

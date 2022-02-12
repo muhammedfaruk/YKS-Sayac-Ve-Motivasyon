@@ -46,13 +46,13 @@ extension UIViewController{
         return updatedDate ?? Date()
     }    
     
-//    func showAlert(title: String, message: String){
-//        let alertControl = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        
-//        present(alertControl, animated: true) {
-//            self.dismiss(animated: true)
-//        }
-//    }
+    func showAlert(title: String, message: String){
+        let alertControl = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        present(alertControl, animated: true) {
+            self.dismiss(animated: true)
+        }
+    }
     
     
 
